@@ -1,0 +1,17 @@
+name: Update APT Repo
+on:
+    workflow_dispatch:
+jobs:
+    update:
+        runs-on: 'ubuntu-latest'
+        permissions:
+            contents: write
+            packages: read
+        steps:
+            - uses: actions/checkout@v4
+            - uses: bryopsida/apt-repo-builder@main
+              with:
+                repositories: 'bryopsida/eureka-operator,bryopsida/eureka-k3s-operator'
+                signing_key: 'TODO'
+                signing_key_password: 'TODO'
+                output_folder: './apt-repo'
