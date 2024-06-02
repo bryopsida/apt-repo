@@ -9,9 +9,12 @@ jobs:
             packages: read
         steps:
             - uses: actions/checkout@v4
+            - run: git branch $(date '+%Y-%m-%d-%H-%M')
             - uses: bryopsida/apt-repo-builder@main
               with:
                 repositories: 'bryopsida/eureka-operator,bryopsida/eureka-k3s-operator'
                 signing_key: 'TODO'
                 signing_key_password: 'TODO'
                 output_folder: './apt-repo'
+            - run: |
+                gh
